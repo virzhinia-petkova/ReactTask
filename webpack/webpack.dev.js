@@ -8,7 +8,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: commonPaths.outputPath,
-    chunkFilename: '[name].js',
+    chunkFilename: '[name].js'
   },
   module: {
     rules: [
@@ -21,15 +21,13 @@ module.exports = {
             options: {
               sourceMap: true,
               localsConvention: 'camelCase',
-              modules: {
-                localIdentName: '[local]___[hash:base64:5]',
-              },
-            },
+              modules: false
+            }
           },
-          'sass-loader',
-        ],
-      },
-    ],
+          'sass-loader'
+        ]
+      }
+    ]
   },
   devServer: {
     contentBase: commonPaths.outputPath,
@@ -39,9 +37,9 @@ module.exports = {
     proxy: {
       '/authorize': {
         target: 'https://pfa.foreca.com',
-        secure: false,
-      },
-    },
+        secure: false
+      }
+    }
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  plugins: [new webpack.HotModuleReplacementPlugin()]
 };
