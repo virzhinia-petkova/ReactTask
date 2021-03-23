@@ -4,27 +4,27 @@ import PropTypes from 'prop-types';
 
 import { API_KEY, BASE_URL, NOT_FOUND } from '../common/constants';
 import { kelvinToCelsius } from '../common/helpers';
+import useLocalStorage from './CustomHooks/useLocalStorage';
 
 const CurrentWeather = ({ currentSearch }) => {
   const [currentTemp, setCurrentTemp] = useState('');
   const [isCityFound, setIsCityFound] = useState(true);
+  const [ storedValue, setValue ] = useLocalStorage('token', '');
 
   useEffect(() => {
     axios
-      .post('/authorize/token?user=virzhiniapetkova&password=urdFn082zfhL')
-      // eslint-disable-next-line no-console
-      .then(({ data }) => console.log(data));
+      .post(`/authorize/token?user=${process.env.USER}&password=${process.env.PASS}`)
+      .then(({ data }) => setValue(data.access_token));
   }, [currentSearch]);
 
-  // useEffect(() => {
-  //   axios.get('https://pfa.foreca.com/api/v1/location/search/Barcelona?lang=es', {
-  //     headers: {
-  // eslint-disable-next-line max-len
-  //       Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9wZmEuZm9yZWNhLmNvbVwvYXV0aG9yaXplXC90b2tlbiIsImlhdCI6MTYxNjE1ODU2OCwiZXhwIjoxNjE2MTYyMTY4LCJuYmYiOjE2MTYxNTg1NjgsImp0aSI6ImRjY2Q4ZjI0NDkwZjRiYzYiLCJzdWIiOiJ2aXJ6aGluaWFwZXRrb3ZhIiwiZm10IjoiWERjT2hqQzQwK0FMamxZVHRqYk9pQT09In0.ywUYJ4-HhT0l3BY1qXABL4c9G7xxRYSj7cUolNMEndw',
-  //     },
-  //   })
-  //     .then(console.log);
-  // }, [currentSearch]);
+  useEffect(() => {
+    axios.get('https://pfa.foreca.com/api/v1/location/search/Barcelona?lang=es', {
+      headers: {
+        Authorization: `Bearer ${storedValue}`,
+      },
+    })
+      .then(console.log);
+  }, [currentSearch]);
 
   useEffect(() => {
     const cancelTokenSource = axios.CancelToken.source();
