@@ -6,7 +6,7 @@ import Link from './Link';
 const SearchList = ({ searchResults, onClick }) => {
   const memoizedSearch = useMemo(
     () =>
-    // sort by country and then by city
+      // sort by country and then by city
       [...searchResults].sort(
         (a, b) => a.country.localeCompare(b.country) || a.name.localeCompare(b.name)
       ),

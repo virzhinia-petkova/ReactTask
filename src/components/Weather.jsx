@@ -41,9 +41,9 @@ const Weather = ({ currentSearch }) => {
   return (
     <>
       {isSearchListVisible ? (
-          <SearchList searchResults={searchResults} onClick={handleSelectCity} />
-          ) : (
-          <CurrentWeather currentSearch={currentSearch} currentTemp={currentTemp} />
+        <SearchList searchResults={searchResults} onClick={handleSelectCity} />
+      ) : (
+        <CurrentWeather currentSearch={currentSearch} currentTemp={currentTemp} />
       )}
     </>
   );
