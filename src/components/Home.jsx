@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import SearchField from './SearchField';
 import SearchableDropdown from './SearchableDropdown';
-import CurrentWeather from './CurrentWeather';
+import Weather from './Weather';
 
 import useLocalStorage from './CustomHooks/useLocalStorage';
 import { ENTER_KEYCODE, MAX_ITEMS_LENGTH } from '../common/constants';
@@ -79,7 +79,7 @@ const Home = () => {
           onClick={handleListItemClick}
         />
       </section>
-      {currentSearch ? <CurrentWeather currentSearch={currentSearch} /> : null}
+      {currentSearch ? <Weather currentSearch={currentSearch} /> : null}
     </main>
   );
 };

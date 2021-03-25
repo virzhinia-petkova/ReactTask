@@ -35,9 +35,9 @@ module.exports = {
     hot: true,
     port: 9020,
     proxy: {
-      '/authorize': {
-        target: 'https://pfa.foreca.com',
-        secure: false
+      '/auth': {
+        target: 'http://localhost:3001',
+        changeOrigin: true
       }
     }
   },
