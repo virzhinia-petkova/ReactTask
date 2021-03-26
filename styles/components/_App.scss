@@ -1,14 +1,13 @@
 .app {
   text-align: center;
   background-color: $primary-color;
-  height: $height-default;
+  min-height: $height-default;
   width: $width-big;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
 
   font-size: $font-size-default;
   color: $font-color;
@@ -29,9 +28,11 @@
   }
 
   &__footer {
-    margin-top: auto;
-    padding: $padding-default 0;
+    position: sticky;
+    bottom: 0;
 
+    padding: $padding-default 0;
     width: inherit;
+    background-color: $primary-color;
   }
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import data from '../common/axios-config';
-import { BASE_URL } from '../common/constants';
+import { BASE_URL, ERRORS } from '../common/constants';
 import SearchList from './SearchList';
 import CurrentWeather from './CurrentWeather';
 
@@ -13,15 +13,19 @@ const Weather = ({ currentSearch }) => {
 
   useEffect(() => {
     const cancelTokenSource = data.CancelToken.source();
-    // get all cities that match the search
-    data
-      .get(`${BASE_URL}/location/search/${currentSearch}`, {
-        cancelToken: cancelTokenSource.token
-      })
-      .then(({ data: { locations } }) => {
-        setSearchResults(locations);
-        setIsSearchListVisible(true);
-      });
+    try {
+      // get all cities that match the search
+      data
+        .get(`${BASE_URL}/location/search/${currentSearch}`, {
+          cancelToken: cancelTokenSource.token
+        })
+        .then(({ data: { locations } }) => {
+          setSearchResults(locations);
+          setIsSearchListVisible(true);
+        });
+    } catch (error) {
+      alert(ERRORS.DEFAULT.message);
+    }
 
     return () => cancelTokenSource.cancel();
   }, [currentSearch]);
@@ -31,11 +35,16 @@ const Weather = ({ currentSearch }) => {
     const searchedCity = searchResults.find(
       search => `${search.name}, ${search.country}` === e.target.innerText
     );
-    // use the id of the chosen city to get it's current weather data
-    data.get(`${BASE_URL}/current/${searchedCity.id}`).then(({ data: { current } }) => {
-      setCurrentTemp(current.temperature);
-      setIsSearchListVisible(false);
-    });
+
+    try {
+      // use the id of the chosen city to get it's current weather data
+      data.get(`${BASE_URL}/current/${searchedCity.id}`).then(({ data: { current } }) => {
+        setCurrentTemp(current.temperature);
+        setIsSearchListVisible(false);
+      });
+    } catch (error) {
+      alert(ERRORS.DEFAULT.message);
+    }
   };
 
   return (
