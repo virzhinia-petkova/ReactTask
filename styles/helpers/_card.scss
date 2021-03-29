@@ -1,0 +1,13 @@
+.card {
+  max-width: 180px;
+  box-shadow: $box-shadow-light;
+  margin: $margin-default;
+  border-radius: $border-radius-default;
+  text-align: left;
+}
+
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

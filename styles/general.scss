@@ -4,10 +4,12 @@
 @import './helpers/inputs';
 @import './helpers/buttons';
 @import './helpers/dropdown';
+@import './helpers/card';
 
 // components
 @import './components/App';
 @import './components/Home';
+@import './components/About';
 
 html {
   min-height: $height-default;
