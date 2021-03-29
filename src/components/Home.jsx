@@ -84,7 +84,7 @@ const Home = () => {
           onClick={handleListItemClick}
         />
       </section>
-      {citySearch ? <SearchList currentSearch={searchWord} /> : null}
+      {citySearch ?  <SearchList currentSearch={searchWord} /> : null}
     </main>
   );
 };
