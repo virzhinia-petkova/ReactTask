@@ -30,9 +30,6 @@ const Home = () => {
         return setSearchError('Please provide a search term');
       }
 
-      // set the current city search here,
-      // this is used for the API requests
-      setSearchWord(searchWord);
       setSearchError(null);
 
       // if the city is already in LocalStorage, don't add it again
