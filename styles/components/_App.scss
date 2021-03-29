@@ -20,6 +20,21 @@
 
     display: flex;
     justify-content: space-evenly;
+
+    &__nav {
+      list-style: none;
+      display: flex;
+
+      &__link {
+        text-decoration: none;
+        color: $font-color;
+        margin: $margin-default;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 
   &__main {
