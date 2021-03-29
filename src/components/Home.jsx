@@ -75,7 +75,7 @@ const Home = () => {
           onClick={handleListItemClick}
         />
       </section>
-      {searchWord ? <Weather currentSearch={searchWord} /> : null}
+      {searchWord ?  <Weather currentSearch={searchWord} /> : null}
     </main>
   );
 };
