@@ -7,6 +7,7 @@ import SearchList from './SearchList';
 
 import useLocalStorage from './CustomHooks/useLocalStorage';
 import { ENTER_KEYCODE, MAX_ITEMS_LENGTH } from '../common/constants';
+import { popularPlaces } from '../common/dummyData';
 
 const Home = () => {
   const history = useHistory();
@@ -18,13 +19,6 @@ const Home = () => {
   const [searchWord, setSearchWord] = useState(initSearchWordValue);
   const [searchError, setSearchError] = useState('');
   const [storedValue, setValue] = useLocalStorage('searchedPlaces', []);
-
-  const popularPlaces = [
-    { name: 'New York', id: 1 },
-    { name: 'Monaco', id: 2 },
-    { name: 'London', id: 3 },
-    { name: 'Tokyo', id: 4 }
-  ];
 
   const handleListItemClick = e => {
     const searchTerm = e.target.innerText;
