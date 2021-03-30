@@ -22,6 +22,7 @@ const App = () => {
       <Header />
       {!isLoading ? (
         <Switch>
+          <Redirect path="/" exact to="/home" />
           <Route exact path="/home">
             <Home />
           </Route>
@@ -31,11 +32,9 @@ const App = () => {
           <Route exact path="/about">
             <About />
           </Route>
-          <Route exact path="/error">
+          <Route path="*">
             <Error />
           </Route>
-          <Redirect path="/" exact to="/home" />
-          <Redirect to="/error" />
         </Switch>
       ) : (
         <p>Getting things ready for you...</p>
