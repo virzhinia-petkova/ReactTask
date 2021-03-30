@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+
 import data from '../common/axios-config';
 import { BASE_URL, ERRORS } from '../common/constants';
 
@@ -23,7 +25,12 @@ const CurrentWeather = ({ cityId, cityName }) => {
     return () => cancelTokenSource.cancel();
   }, [cityId]);
 
-  return <p className="app__main">{`The current weather in ${cityName} is ${currentTemp} C.`}</p>;
+  return <p>{`The current weather in ${cityName} is ${currentTemp} C.`}</p>;
+};
+
+CurrentWeather.propTypes = {
+  cityId: PropTypes.string.isRequired,
+  cityName: PropTypes.string.isRequired
 };
 
 export default CurrentWeather;

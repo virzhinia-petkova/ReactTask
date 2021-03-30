@@ -1,5 +1,4 @@
 import { useMemo, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router';
 
 import Link from './Link';
@@ -9,8 +8,6 @@ import { BASE_URL, ERRORS } from '../common/constants';
 const SearchList = () => {
   const [searchResults, setSearchResults] = useState([]);
   const { location } = useParams();
-
-  console.log(location);
   const history = useHistory();
 
   useEffect(() => {
@@ -65,9 +62,6 @@ const SearchList = () => {
       )}
     </div>
   );
-};
-SearchList.propTypes = {
-  currentSearch: PropTypes.string.isRequired
 };
 
 export default SearchList;
