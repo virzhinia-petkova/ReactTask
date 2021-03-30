@@ -37,7 +37,7 @@ const SearchList = () => {
     history.push(`/home?city=${selectedCityName}&id=${selectedCityId}`);
   };
 
-  const memoizedSearch = useMemo(
+  const matchedResults = useMemo(
     () =>
       // sort by country and then by city
       [...searchResults].sort(
@@ -48,8 +48,8 @@ const SearchList = () => {
   return (
     <div className="app__main">
       <h2>Here's what we found:</h2>
-      {searchResults.length > 0 ? (
-        memoizedSearch.map(result => (
+      {matchedResults.length > 0 ? (
+        matchedResults.map(result => (
           <Link
             place={`${result.name}, ${result.country}`}
             key={result.id}
