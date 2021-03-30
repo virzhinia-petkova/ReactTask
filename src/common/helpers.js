@@ -3,7 +3,7 @@ export const kelvinToCelsius = kelvin => {
   return +celsius.toFixed(1);
 };
 
-export const groupQueryString = (queryString) => {
+export const groupQueryString = queryString => {
   // remove the ? from the beginning and split the string at &
   const separatedQueryStrings = queryString.slice(1, queryString.length).split('&');
   // make an object with key:value pairs for the url data
@@ -12,7 +12,7 @@ export const groupQueryString = (queryString) => {
     // place part before = as key and the one after as value
     acc[splitQuery[0]] = splitQuery[1];
     return acc;
-  }, {})
+  }, {});
 
   return groupedQueryStrings;
-}
+};
