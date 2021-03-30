@@ -3,12 +3,12 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import SearchField from './SearchField';
 import SearchableDropdown from './SearchableDropdown';
+import CurrentWeather from './CurrentWeather';
 
 import useLocalStorage from './CustomHooks/useLocalStorage';
 import { ENTER_KEYCODE, MAX_ITEMS_LENGTH } from '../common/constants';
 import { popularPlaces } from '../common/dummyData';
 import { groupQueryString } from '../common/helpers';
-import CurrentWeather from './CurrentWeather';
 
 const Home = () => {
   const history = useHistory();
