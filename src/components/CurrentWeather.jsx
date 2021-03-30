@@ -2,13 +2,8 @@ import { useEffect, useState } from 'react';
 import data from '../common/axios-config';
 import { BASE_URL, ERRORS } from '../common/constants';
 
-const CurrentWeather = props => {
+const CurrentWeather = ({ cityId, cityName }) => {
   const [currentTemp, setCurrentTemp] = useState('');
-  const { city } = props.match.params;
-
-  const currentCityDetails = city.split('-');
-  const cityName = currentCityDetails[0];
-  const cityId = currentCityDetails[1];
 
   useEffect(() => {
     const cancelTokenSource = data.CancelToken.source();
@@ -26,7 +21,7 @@ const CurrentWeather = props => {
     }
 
     return () => cancelTokenSource.cancel();
-  }, [city]);
+  }, [cityId]);
 
   return <p className="app__main">{`The current weather in ${cityName} is ${currentTemp} C.`}</p>;
 };

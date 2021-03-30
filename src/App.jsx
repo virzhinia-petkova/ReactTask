@@ -7,7 +7,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import About from './components/About';
 import Error from './components/Error';
-import CurrentWeather from './components/CurrentWeather';
+import SearchList from './components/SearchList';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,10 +21,18 @@ const App = () => {
       <Header />
       {!isLoading ? (
         <Switch>
-          <Route exact path="/home" component={Home} />
-          <Route path="/home/:city" component={CurrentWeather} />
-          <Route exact path="/about" component={About} />
-          <Route exact path="/error" component={Error} />
+          <Route exact path="/home">
+            <Home />
+          </Route>
+          <Route path="/home/:location">
+            <SearchList />
+          </Route>
+          <Route exact path="/about">
+            <About />
+          </Route>
+          <Route exact path="/error">
+            <Error />
+          </Route>
           <Redirect path="/" exact to="/home" />
           <Redirect to="/error" />
         </Switch>
