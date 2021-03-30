@@ -5,7 +5,7 @@ import { refreshAccessToken } from './common/auth';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Home from './components/Home';
-import CurrentWeather from './components/CurrentWeather';
+import SearchList from './components/SearchList';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,8 +19,12 @@ const App = () => {
       <Header />
       {!isLoading ? (
         <Switch>
-          <Route exact path="/home" component={Home} />
-          <Route path="/home/:city" component={CurrentWeather} />
+          <Route exact path="/home">
+            <Home />
+          </Route>
+          <Route path="/home/:location">
+            <SearchList />
+          </Route>
           <Redirect path="/" exact to="/home" />
         </Switch>
       ) : (

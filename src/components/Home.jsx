@@ -3,18 +3,24 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import SearchField from './SearchField';
 import SearchableDropdown from './SearchableDropdown';
-import SearchList from './SearchList';
 
 import useLocalStorage from './CustomHooks/useLocalStorage';
 import { ENTER_KEYCODE, MAX_ITEMS_LENGTH } from '../common/constants';
+import { groupQueryString } from '../common/helpers';
+import CurrentWeather from './CurrentWeather';
 
 const Home = () => {
   const history = useHistory();
   const { search } = useLocation();
-  // take the value after =, which is the city
-  const citySearch = search?.split('=')[1];
+
+  // place the query data to key:value pairs
+  const groupedQueryStrings = groupQueryString(search);
+  // replace %20 with spaces
+  const cityName = groupedQueryStrings.city?.replace(/%20/g, ' ');
+  const cityId = groupedQueryStrings.id;
+
   // if there is a search query - take it as inital value
-  const initSearchWordValue = citySearch ? citySearch : '';
+  const initSearchWordValue = cityName ? cityName : '';
   const [searchWord, setSearchWord] = useState(initSearchWordValue);
   const [searchError, setSearchError] = useState('');
   const [storedValue, setValue] = useLocalStorage('searchedPlaces', []);
@@ -29,7 +35,7 @@ const Home = () => {
   const handleListItemClick = e => {
     const searchTerm = e.target.innerText;
     setSearchWord(searchTerm);
-    history.push(`/home?search=${searchTerm}`);
+    history.push(`/home/${searchTerm}`);
   };
 
   const handleSearch = e => {
@@ -38,7 +44,7 @@ const Home = () => {
         return setSearchError('Please provide a search term');
       }
 
-      history.push(`/home?search=${searchWord}`);
+      history.push(`/home/${searchWord}`);
       setSearchError(null);
 
       // if the city is already in LocalStorage, don't add it again
@@ -84,7 +90,7 @@ const Home = () => {
           onClick={handleListItemClick}
         />
       </section>
-      {citySearch ?  <SearchList currentSearch={searchWord} /> : null}
+      {search ? <CurrentWeather cityId={cityId} cityName={cityName} /> : null}
     </main>
   );
 };

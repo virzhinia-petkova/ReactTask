@@ -1,13 +1,16 @@
 import { useMemo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 
 import Link from './Link';
 import data from '../common/axios-config';
 import { BASE_URL, ERRORS } from '../common/constants';
 
-const SearchList = ({ currentSearch }) => {
+const SearchList = () => {
   const [searchResults, setSearchResults] = useState([]);
+  const { location } = useParams();
+
+  console.log(location);
   const history = useHistory();
 
   useEffect(() => {
@@ -15,7 +18,7 @@ const SearchList = ({ currentSearch }) => {
     try {
       // get all cities that match the search
       data
-        .get(`${BASE_URL}/location/search/${currentSearch}`, {
+        .get(`${BASE_URL}/location/search/${location}`, {
           cancelToken: cancelTokenSource.token
         })
         .then(({ data: { locations } }) => {
@@ -26,7 +29,7 @@ const SearchList = ({ currentSearch }) => {
     }
 
     return () => cancelTokenSource.cancel();
-  }, [currentSearch]);
+  }, [location]);
 
   const handleSelectCity = e => {
     // find the exact city chosen from the search results list
@@ -34,7 +37,7 @@ const SearchList = ({ currentSearch }) => {
     const selectedCityName = e.target.innerText;
 
     // update the url with the searched city name & its id
-    history.push(`/home/${selectedCityName}-${selectedCityId}`);
+    history.push(`/home?city=${selectedCityName}&id=${selectedCityId}`);
   };
 
   const memoizedSearch = useMemo(
@@ -45,17 +48,22 @@ const SearchList = ({ currentSearch }) => {
       ),
     [searchResults]
   );
-  return searchResults.length > 0 ? (
-    memoizedSearch.map(result => (
-      <Link
-        place={`${result.name}, ${result.country}`}
-        key={result.id}
-        id={result.id}
-        onClick={handleSelectCity}
-      />
-    ))
-  ) : (
-    <p>Ooops, looks like we couldn't find anything</p>
+  return (
+    <div className="app__main">
+      <h2>Here's what we found:</h2>
+      {searchResults.length > 0 ? (
+        memoizedSearch.map(result => (
+          <Link
+            place={`${result.name}, ${result.country}`}
+            key={result.id}
+            id={result.id}
+            onClick={handleSelectCity}
+          />
+        ))
+      ) : (
+        <p>Ooops, looks like we couldn't find anything</p>
+      )}
+    </div>
   );
 };
 SearchList.propTypes = {
