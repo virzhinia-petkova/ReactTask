@@ -8,8 +8,6 @@ import { BASE_URL, ERRORS } from '../common/constants';
 const SearchList = () => {
   const [searchResults, setSearchResults] = useState([]);
   const { location } = useParams();
-
-  console.log(location);
   const history = useHistory();
 
   useEffect(() => {
