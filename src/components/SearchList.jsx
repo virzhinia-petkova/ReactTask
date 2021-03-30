@@ -1,5 +1,4 @@
 import { useMemo, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router';
 
 import Link from './Link';
@@ -40,7 +39,7 @@ const SearchList = () => {
     history.push(`/home?city=${selectedCityName}&id=${selectedCityId}`);
   };
 
-  const memoizedSearch = useMemo(
+  const metchedResults = useMemo(
     () =>
       // sort by country and then by city
       [...searchResults].sort(
@@ -51,7 +50,7 @@ const SearchList = () => {
   return (
     <div className="app__main">
       <h2>Here's what we found:</h2>
-      {searchResults.length > 0 ? (
+      {metchedResults.length > 0 ? (
         memoizedSearch.map(result => (
           <Link
             place={`${result.name}, ${result.country}`}
@@ -65,9 +64,6 @@ const SearchList = () => {
       )}
     </div>
   );
-};
-SearchList.propTypes = {
-  currentSearch: PropTypes.string.isRequired
 };
 
 export default SearchList;
