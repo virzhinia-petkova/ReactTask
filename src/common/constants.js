@@ -19,6 +19,6 @@ export const ERRORS = {
 };
 
 export const REQUEST_TYPES = {
-  location: 'location',
+  location: 'locations',
   current: 'current'
 };

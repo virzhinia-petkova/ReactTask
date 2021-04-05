@@ -37,7 +37,7 @@ const Home = () => {
 
   const handleListItemClick = e => {
     const searchTerm = e.target.dataset.name;
-    setSearchWord(searchTerm);
+    // setSearchWord(searchTerm);
     history.push(`/home/${searchTerm}`);
   };
 

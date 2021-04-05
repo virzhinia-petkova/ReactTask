@@ -4,9 +4,9 @@ import useAPIRequest from './CustomHooks/useAPIRequest';
 import { REQUEST_TYPES } from '../common/constants';
 
 const CurrentWeather = ({ cityId, cityName }) => {
-  const { current } = useAPIRequest(REQUEST_TYPES.current, cityId);
+  const { isLoading, current: current } = useAPIRequest(REQUEST_TYPES.current, cityId);
 
-  return current ? (
+  return !isLoading ? (
     <p>{`The current weather in ${cityName} is ${current.temperature} C.`}</p>
   ) : (
     <p>Fetching you data...</p>

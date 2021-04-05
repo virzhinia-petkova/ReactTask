@@ -1,7 +1,10 @@
-import { useState, useEffect } from 'react';
-import { ERRORS, REQUEST_TYPES } from '../../common/constants';
-import { getLocationData, getCurrentWeatherData } from '../../services/weatherService';
-import { cancelRequest, areRequestsCanceled } from '../../common/axios-config';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { REQUEST_TYPES } from '../../common/constants';
+import { getCurrentWeatherData } from '../../actions/currentWeather';
+import { getLocationData } from '../../actions/location';
+import { cancelRequest } from '../../common/axios-config';
 
 const typeMap = new Map([
   [REQUEST_TYPES.location, getLocationData],
@@ -9,23 +12,18 @@ const typeMap = new Map([
 ]);
 
 const useAPIRequest = (type, urlParam) => {
-  const [data, setData] = useState([]);
+  const data = useSelector(state => state[type]);
+  const dispatch = useDispatch();
 
   if (!typeMap.has(type)) {
     return [];
   }
 
   useEffect(() => {
-    typeMap
-      .get(type)(urlParam)
-      .then(data => setData(data))
-      .catch(error => {
-        areRequestsCanceled(error) || alert(ERRORS.DEFAULT.message);
-      });
+    dispatch(typeMap.get(type)(urlParam));
 
     return () => cancelRequest();
-  }, [type, urlParam]);
-
+  }, [type, urlParam, dispatch]);
   return data;
 };
 
