@@ -2,7 +2,7 @@ import {
   LOCATIONS_SET_LOCATIONS,
   LOCATIONS_FAIL,
   LOCATIONS_LOADING,
-  LOCATIONS_LOADED,
+  LOCATIONS_LOADED
 } from '../actions/types';
 
 const initialState = {

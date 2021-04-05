@@ -2,7 +2,7 @@ import {
   LOCATIONS_SET_LOCATIONS,
   LOCATIONS_FAIL,
   LOCATIONS_LOADING,
-  LOCATIONS_LOADED,
+  LOCATIONS_LOADED
 } from './types';
 import axios, { areRequestsCanceled } from '../common/axios-config';
 import { BASE_URL, ERRORS } from '../common/constants';
