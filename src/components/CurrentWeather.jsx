@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { cancelRequest } from '../common/axios-config';
 
-const CurrentWeather = ({ cityId, cityName, getCurrentWeatherData, data: { current, isLoading } }) => {
-
+const CurrentWeather = ({
+  cityId,
+  cityName,
+  getCurrentWeatherData,
+  data: { current, isLoading }
+}) => {
   useEffect(() => {
     getCurrentWeatherData(cityId);
 

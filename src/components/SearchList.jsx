@@ -13,7 +13,7 @@ const SearchList = ({ getLocationData, data: { locations, isLoading } }) => {
     getLocationData(location);
 
     return () => cancelRequest();
-  }, [location])
+  }, [location]);
 
   const handleSelectCity = e => {
     const selectedCityId = e.target.dataset.target;
@@ -25,19 +25,22 @@ const SearchList = ({ getLocationData, data: { locations, isLoading } }) => {
   return (
     <div className="app__main">
       <h2>Here's what we found:</h2>
-      {!isLoading ? 
-      locations.length > 0 ? (
-        locations.map(result => (
-          <Link
-            place={`${result.name}, ${result.country}`}
-            key={result.id}
-            id={result.id}
-            onClick={handleSelectCity}
-          />
-        ))
+      {!isLoading ? (
+        locations.length > 0 ? (
+          locations.map(result => (
+            <Link
+              place={`${result.name}, ${result.country}`}
+              key={result.id}
+              id={result.id}
+              onClick={handleSelectCity}
+            />
+          ))
+        ) : (
+          <p>Ooops, looks like we couldn't find anything</p>
+        )
       ) : (
-        <p>Ooops, looks like we couldn't find anything</p>
-      ) : <p>Fetching you data...</p> }
+        <p>Fetching you data...</p>
+      )}
     </div>
   );
 };
