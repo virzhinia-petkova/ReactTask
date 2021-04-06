@@ -1,19 +1,18 @@
 import PropTypes from 'prop-types';
 
-import useAPIRequest from './CustomHooks/useAPIRequest';
-import { REQUEST_TYPES } from '../common/constants';
 import { useEffect } from 'react';
+import { cancelRequest } from '../common/axios-config';
 
-const CurrentWeather = (
-  // { cityId, cityName, getCurrentWeatherData, data }
-  props
-) => {
+const CurrentWeather = ({ cityId, cityName, getCurrentWeatherData, data: { current, isLoading } }) => {
+
   useEffect(() => {
-    props.getCurrentWeatherData(props.cityId);
-  }, [props.cityId]);
+    getCurrentWeatherData(cityId);
 
-  return props.data.current ? (
-    <p>{`The current weather in ${props.cityName} is ${props.data.current.temperature} C.`}</p>
+    return () => cancelRequest();
+  }, [cityId]);
+
+  return !isLoading ? (
+    <p>{`The current weather in ${cityName} is ${current.temperature} C.`}</p>
   ) : (
     <p>Fetching you data...</p>
   );
