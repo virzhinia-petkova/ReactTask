@@ -8,25 +8,12 @@ const typeMap = new Map([
   [REQUEST_TYPES.current, getCurrentWeatherData]
 ]);
 
-const useAPIRequest = (type, urlParam) => {
-  const [data, setData] = useState([]);
-
-  if (!typeMap.has(type)) {
-    return [];
-  }
-
+const useAPIRequest = (type, urlParam, action) => {
   useEffect(() => {
-    typeMap
-      .get(type)(urlParam)
-      .then(data => setData(data))
-      .catch(error => {
-        areRequestsCanceled(error) || alert(ERRORS.DEFAULT.message);
-      });
+    action(urlParam);
 
     return () => cancelRequest();
   }, [type, urlParam]);
-
-  return data;
 };
 
 export default useAPIRequest;

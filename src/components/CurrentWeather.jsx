@@ -2,12 +2,18 @@ import PropTypes from 'prop-types';
 
 import useAPIRequest from './CustomHooks/useAPIRequest';
 import { REQUEST_TYPES } from '../common/constants';
+import { useEffect } from 'react';
 
-const CurrentWeather = ({ cityId, cityName }) => {
-  const { current } = useAPIRequest(REQUEST_TYPES.current, cityId);
+const CurrentWeather = (
+  // { cityId, cityName, getCurrentWeatherData, data }
+  props
+) => {
+  useEffect(() => {
+    props.getCurrentWeatherData(props.cityId);
+  }, [props.cityId]);
 
-  return current ? (
-    <p>{`The current weather in ${cityName} is ${current.temperature} C.`}</p>
+  return props.data.current ? (
+    <p>{`The current weather in ${props.cityName} is ${props.data.current.temperature} C.`}</p>
   ) : (
     <p>Fetching you data...</p>
   );
