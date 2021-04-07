@@ -8,6 +8,11 @@ export const SET_CURRENT_FAIL = `${PREFIX}SET_CURRENT_FAIL`;
 export const SET_CURRENT_LOADING = `${PREFIX}SET_CURRENT_LOADING_LOADING`;
 export const SET_CURRENT_LOADED = `${PREFIX}SET_CURRENT_LOADED`;
 
+export const SET_DAILY_SUCCESS = `${PREFIX}SET_DAILY_SUCCESS`;
+export const SET_DAILY_FAIL = `${PREFIX}SET_DAILY_FAIL`;
+export const SET_DAILY_LOADING = `${PREFIX}SET_DAILY_LOADING_LOADING`;
+export const SET_DAILY_LOADED = `${PREFIX}SET_DAILY_LOADED`;
+
 const setCurrentFail = error => ({ type: SET_CURRENT_FAIL, payload: error });
 const setCurrentSuccess = locations => ({ type: SET_CURRENT_SUCCESS, payload: locations });
 const setCurrentLoading = { type: SET_CURRENT_LOADING };

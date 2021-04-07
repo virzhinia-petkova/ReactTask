@@ -1,4 +1,5 @@
 export const BASE_URL = 'https://pfa.foreca.com/api/v1';
+export const WEATHER_SYMBOL_BASE_URL = 'https://developer.foreca.com/static/images/symbols';
 
 export const ENTER_KEYCODE = 13;
 export const MAX_ITEMS_LENGTH = 4;

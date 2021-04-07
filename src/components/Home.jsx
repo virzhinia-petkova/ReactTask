@@ -3,7 +3,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import SearchField from './SearchField';
 import SearchableDropdown from './SearchableDropdown';
-import CurrentWeather from './CurrentWeatherConnect';
+import CurrentWeather from './WeatherConnect';
 
 import useLocalStorage from './CustomHooks/useLocalStorage';
 import { ENTER_KEYCODE, MAX_ITEMS_LENGTH } from '../common/constants';
@@ -104,7 +104,7 @@ const Home = () => {
       {search ? <CurrentWeather cityId={cityId} cityName={cityName} /> : null}
     </main>
   ) : (
-    <p>Getting things ready for you</p>
+    <p className="app__main">Getting things ready for you</p>
   );
 };
 

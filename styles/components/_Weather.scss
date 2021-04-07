@@ -1,0 +1,46 @@
+.weather {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  color: $font-color;
+
+  &__current {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    img {
+      max-width: $max-width-default;
+    }
+  }
+
+  &__days {
+    flex: 2;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    margin: $margin-default;
+    padding: $padding-default;
+
+    &__daily {
+      flex: 1 0 27%;
+      padding: $padding-default;
+      border-right: $border-default;
+
+      img {
+        width: 100px;
+        width: 75px;
+      }
+    }
+
+    :nth-child(3n) {
+      border-right: none;
+    }
+  }
+}
