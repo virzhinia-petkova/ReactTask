@@ -1,4 +1,5 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
+import Feedback from './components/Feedback';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -15,6 +16,9 @@ const App = () => {
         </Route>
         <Route path="/home/:location">
           <SearchList />
+        </Route>
+        <Route path="/feedback">
+          <Feedback />
         </Route>
         <Redirect path="/" exact to="/home" />
       </Switch>

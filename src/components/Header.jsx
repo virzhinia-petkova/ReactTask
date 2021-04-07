@@ -11,6 +11,9 @@ const Header = () => {
         <Link className="app__header__nav__link" to="/about">
           About
         </Link>
+        <Link className="app__header__nav__link" to="/feedback">
+          Feedback
+        </Link>
       </nav>
     </header>
   );
