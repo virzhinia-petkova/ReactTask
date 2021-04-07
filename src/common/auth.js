@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { areRequestsCanceled } from './axios-config';
 import { ERRORS } from './constants';
 
 export const refreshAccessToken = async () => {
@@ -9,6 +10,6 @@ export const refreshAccessToken = async () => {
     sessionStorage.setItem('token', JSON.stringify(access_token));
     return access_token;
   } catch (error) {
-    alert(ERRORS.DEFAULT.message);
+    areRequestsCanceled(error) || alert(ERRORS.DEFAULT.message);
   }
 };

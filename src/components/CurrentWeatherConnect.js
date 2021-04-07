@@ -4,4 +4,8 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({ data: state.current });
 
-export default connect(mapStateToProps, { getCurrentWeatherData })(CurrentWeather);
+const mapDispatchToProps = dispatch => ({
+  getCurrentWeatherData: value => dispatch(getCurrentWeatherData(value))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CurrentWeather);

@@ -19,3 +19,6 @@ export const groupQueryString = queryString =>
       acc[key] = value;
       return acc;
     }, {});
+
+export const sortLocations = locations =>
+  [...locations].sort((a, b) => a.country.localeCompare(b.country) || a.name.localeCompare(b.name));

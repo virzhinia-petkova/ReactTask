@@ -25,7 +25,15 @@ const Home = () => {
   const [isAuthLoading, setIsAuthLoading] = useState(true);
 
   useEffect(() => {
-    refreshAccessToken().then(() => setIsAuthLoading(false));
+    // i don't want the request to be canceled if the component is unmounted
+    // so that the user will still be authenticated
+    // but i don't want the memory leak either
+    let isMounted = true;
+    refreshAccessToken().then(() => isMounted && setIsAuthLoading(false));
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const popularPlaces = [

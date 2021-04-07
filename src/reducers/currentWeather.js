@@ -1,36 +1,38 @@
 import {
-  CURRENT_SET_CURRENT,
-  CURRENT_FAIL,
-  CURRENT_LOADING,
-  CURRENT_LOADED
-} from '../actions/types';
+  SET_CURRENT_SUCCESS,
+  SET_CURRENT_FAIL,
+  SET_CURRENT_LOADING,
+  SET_CURRENT_LOADED
+} from '../actions/currentWeather';
 
 const initialState = {
   isLoading: true,
-  current: {}
+  current: {},
+  error: []
 };
 
 const current = (state = initialState, action) => {
   switch (action.type) {
-    case CURRENT_LOADING: {
+    case SET_CURRENT_LOADING: {
       return {
         ...state,
         isLoading: true
       };
     }
-    case CURRENT_SET_CURRENT: {
+    case SET_CURRENT_SUCCESS: {
       return {
         ...state,
         current: action.payload.current
       };
     }
-    case CURRENT_FAIL: {
+    case SET_CURRENT_FAIL: {
       return {
         ...state,
-        current: {}
+        current: {},
+        error: [...state.error, action.payload]
       };
     }
-    case CURRENT_LOADED: {
+    case SET_CURRENT_LOADED: {
       return {
         ...state,
         isLoading: false

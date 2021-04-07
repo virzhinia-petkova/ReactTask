@@ -16,7 +16,7 @@ const CurrentWeather = ({
   }, [cityId]);
 
   return !isLoading ? (
-    <p>{`The current weather in ${cityName} is ${current.temperature} C.`}</p>
+    <p>{`The current weather in ${cityName} is ${current.temperature || `unavailable`} C.`}</p>
   ) : (
     <p>Fetching you data...</p>
   );
@@ -24,7 +24,10 @@ const CurrentWeather = ({
 
 CurrentWeather.propTypes = {
   cityId: PropTypes.string.isRequired,
-  cityName: PropTypes.string.isRequired
+  cityName: PropTypes.string.isRequired,
+  getCurrentWeatherData: PropTypes.func.isRequired,
+  current: PropTypes.object.isRequired,
+  isLoading: PropTypes.bool.isRequired
 };
 
 export default CurrentWeather;

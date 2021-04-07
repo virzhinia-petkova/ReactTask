@@ -45,4 +45,10 @@ const SearchList = ({ getLocationData, data: { locations, isLoading } }) => {
   );
 };
 
+SearchList.propTypes = {
+  locations: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  getLocationData: PropTypes.func.isRequired
+};
+
 export default SearchList;

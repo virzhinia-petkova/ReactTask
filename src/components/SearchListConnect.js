@@ -4,4 +4,8 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({ data: state.locations });
 
-export default connect(mapStateToProps, { getLocationData })(SearchList);
+const mapDispatchToProps = dispatch => ({
+  getLocationData: value => dispatch(getLocationData(value))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchList);

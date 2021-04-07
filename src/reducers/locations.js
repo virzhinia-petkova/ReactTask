@@ -1,39 +1,38 @@
 import {
-  LOCATIONS_SET_LOCATIONS,
-  LOCATIONS_FAIL,
-  LOCATIONS_LOADING,
-  LOCATIONS_LOADED
-} from '../actions/types';
+  SET_LOCATIONS_SUCCESS,
+  SET_LOCATIONS_FAIL,
+  SET_LOCATIONS_LOADING,
+  SET_LOCATIONS_LOADED
+} from '../actions/locations';
 
 const initialState = {
   locations: [],
+  error: [],
   isLoading: true
 };
 
 const locations = (state = initialState, action) => {
   switch (action.type) {
-    case LOCATIONS_LOADING: {
+    case SET_LOCATIONS_LOADING: {
       return {
         ...state,
         isLoading: true
       };
     }
-    case LOCATIONS_SET_LOCATIONS: {
-      const sortedLocations = [...action.payload].sort(
-        (a, b) => a.country.localeCompare(b.country) || a.name.localeCompare(b.name)
-      );
+    case SET_LOCATIONS_SUCCESS: {
       return {
         ...state,
-        locations: sortedLocations
+        locations: action.payload
       };
     }
-    case LOCATIONS_FAIL: {
+    case SET_LOCATIONS_FAIL: {
       return {
         ...state,
-        locations: []
+        locations: [],
+        error: [...state.error, action.payload]
       };
     }
-    case LOCATIONS_LOADED: {
+    case SET_LOCATIONS_LOADED: {
       return {
         ...state,
         isLoading: false
