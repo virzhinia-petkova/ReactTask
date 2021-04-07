@@ -1,5 +1,5 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
-import Feedback from './components/Feedback';
+import Feedback from './components/FeedbackConnect';
 
 import Footer from './components/Footer';
 import Header from './components/Header';

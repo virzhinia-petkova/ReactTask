@@ -1,4 +1,20 @@
 .input {
+  padding: $padding-default;
+  padding-left: $padding-big;
+  border-radius: $border-radius-default;
+  border: 1px solid $primary-color-darker;
+  background-color: $primary-color;
+
+  width: inherit;
+
+  &::placeholder {
+    color: $font-color;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
   &__search {
     padding: $padding-default;
     padding-left: $padding-big;
