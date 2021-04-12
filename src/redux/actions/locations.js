@@ -1,6 +1,6 @@
-import axios, { areRequestsCanceled } from '../common/axios-config';
-import { BASE_URL, ERRORS } from '../common/constants';
-import { sortLocations } from '../common/helpers';
+import { areRequestsCanceled } from '../../common/axios-config';
+import { ERRORS } from '../../common/constants';
+import { sortLocations } from '../../common/helpers';
 
 const PREFIX = 'LOCATIONS/';
 
@@ -14,13 +14,11 @@ const setLocationsSuccess = locations => ({ type: SET_LOCATIONS_SUCCESS, payload
 const setLocationsLoading = { type: SET_LOCATIONS_LOADING };
 const setLocationsLoaded = { type: SET_LOCATIONS_LOADED };
 
-export const getLocationData = location => async dispatch => {
+export const getLocationData = location => async (dispatch, _, DataService) => {
   try {
     dispatch(setLocationsLoading);
 
-    const {
-      data: { locations }
-    } = await axios.get(`${BASE_URL}/location/search/${location}`);
+    const locations = await DataService.getLocationData(location);
     const sortedLocations = sortLocations(locations);
 
     dispatch(setLocationsSuccess(sortedLocations));

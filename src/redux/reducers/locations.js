@@ -6,12 +6,12 @@ import {
 } from '../actions/locations';
 
 const initialState = {
-  locations: [],
-  error: [],
-  isLoading: true
+  isLoading: false,
+  locations: null,
+  error: []
 };
 
-const locations = (state = initialState, action) => {
+const locationsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_LOCATIONS_LOADING: {
       return {
@@ -28,7 +28,6 @@ const locations = (state = initialState, action) => {
     case SET_LOCATIONS_FAIL: {
       return {
         ...state,
-        locations: [],
         error: [...state.error, action.payload]
       };
     }
@@ -44,4 +43,4 @@ const locations = (state = initialState, action) => {
   }
 };
 
-export default locations;
+export default locationsReducer;

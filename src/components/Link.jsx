@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Link = ({ place, onClick, id }) => (
   <a
     className="dropdown__list__item"
-    onClick={onClick}
+    onClick={e => onClick({ e, place, id })}
     onKeyDown={onClick}
     data-target={id}
     data-name={place}

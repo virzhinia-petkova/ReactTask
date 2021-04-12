@@ -3,11 +3,11 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import SearchField from './SearchField';
 import SearchableDropdown from './SearchableDropdown';
-import CurrentWeather from './CurrentWeatherConnect';
+import CurrentWeather from './CurrentWeather/CurrentWeatherConnect';
 
 import useLocalStorage from './CustomHooks/useLocalStorage';
 import { ENTER_KEYCODE, MAX_ITEMS_LENGTH } from '../common/constants';
-import { groupQueryString } from '../common/helpers';
+import { groupQueryString, transformSpaces } from '../common/helpers';
 import { refreshAccessToken } from '../common/auth';
 
 const Home = () => {
@@ -15,25 +15,20 @@ const Home = () => {
   const { search } = useLocation();
 
   const groupedQueryStrings = groupQueryString(search);
-  const cityName = groupedQueryStrings.city?.replace(/%20/g, ' ');
+  const cityName = transformSpaces(groupedQueryStrings);
   const cityId = groupedQueryStrings.id;
 
   const initSearchWordValue = cityName || '';
   const [searchWord, setSearchWord] = useState(initSearchWordValue);
   const [searchError, setSearchError] = useState('');
   const [storedValue, setValue] = useLocalStorage('searchedPlaces', []);
-  const [isAuthLoading, setIsAuthLoading] = useState(true);
+  const [isAuthenticating, setIsAuthenticating] = useState(true);
 
   useEffect(() => {
-    // i don't want the request to be canceled if the component is unmounted
-    // so that the user will still be authenticated
-    // but i don't want the memory leak either
-    let isMounted = true;
-    refreshAccessToken().then(() => isMounted && setIsAuthLoading(false));
-
-    return () => {
-      isMounted = false;
-    };
+    (async () => {
+      await refreshAccessToken();
+      setIsAuthenticating(false);
+    })();
   }, []);
 
   const popularPlaces = [
@@ -43,10 +38,9 @@ const Home = () => {
     { name: 'Tokyo', id: 4 }
   ];
 
-  const handleListItemClick = e => {
-    const searchTerm = e.target.dataset.name;
-    setSearchWord(searchTerm);
-    history.push(`/home/${searchTerm}`);
+  const handleListItemClick = ({ place }) => {
+    setSearchWord(place);
+    history.push(`/home/${place}`);
   };
 
   const handleSearch = e => {
@@ -80,7 +74,7 @@ const Home = () => {
     return '';
   };
 
-  return !isAuthLoading ? (
+  return !isAuthenticating ? (
     <main className="app__main home">
       <section className="home__filters">
         {searchError ? <p className="home__filters__error">{searchError}</p> : null}

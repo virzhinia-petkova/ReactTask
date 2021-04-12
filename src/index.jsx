@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import App from './App.jsx';
-import store from './store/index';
+import store from './redux/store';
 import '../styles/general.scss';
 
 ReactDOM.render(
@@ -11,7 +11,6 @@ ReactDOM.render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
-    ,
   </Provider>,
   document.getElementById('app')
 );

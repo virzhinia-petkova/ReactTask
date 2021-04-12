@@ -6,12 +6,12 @@ import {
 } from '../actions/currentWeather';
 
 const initialState = {
-  isLoading: true,
-  current: {},
+  isLoading: false,
+  current: null,
   error: []
 };
 
-const current = (state = initialState, action) => {
+const currentWeatherReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CURRENT_LOADING: {
       return {
@@ -22,13 +22,12 @@ const current = (state = initialState, action) => {
     case SET_CURRENT_SUCCESS: {
       return {
         ...state,
-        current: action.payload.current
+        current: action.payload
       };
     }
     case SET_CURRENT_FAIL: {
       return {
         ...state,
-        current: {},
         error: [...state.error, action.payload]
       };
     }
@@ -44,4 +43,4 @@ const current = (state = initialState, action) => {
   }
 };
 
-export default current;
+export default currentWeatherReducer;
