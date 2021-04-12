@@ -1,5 +1,5 @@
 import Feedback from './Feedback';
-import { setForm, submitForm } from '../redux/actions/feedback';
+import { setForm, submitForm } from '../../redux/actions/feedback';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
