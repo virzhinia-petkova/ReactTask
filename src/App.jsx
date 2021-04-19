@@ -1,12 +1,12 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import Feedback from './components/Feedback/FeedbackConnect';
+import Feedback from './components/Feedback/FeedbackContainer';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Home from './components/Home';
 import About from './components/About';
 import Error from './components/Error';
-import SearchList from './components/SearchList/SearchListConnect';
+import SearchList from './components/SearchList/SearchListContainer';
 
 const App = () => {
   return (
