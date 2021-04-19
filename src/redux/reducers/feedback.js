@@ -1,6 +1,6 @@
 import { SET_FIELD, SET_IS_FORM_VALID, SUBMIT_FORM, RESET_FORM_STATE } from '../actions/feedback';
 
-const initialFormState = {
+const initialFormData = {
   one: {
     question: 'How often do you visit weather forecast applications?',
     answer: '',
@@ -54,7 +54,7 @@ const initialFormState = {
 const initialState = {
   isFormValid: false,
   isFormSubmitted: false,
-  formData: initialFormState
+  formData: initialFormData
 };
 
 const feedback = (state = initialState, action) => {
@@ -70,7 +70,7 @@ const feedback = (state = initialState, action) => {
       return { ...state, isFormSubmitted: true };
     }
     case RESET_FORM_STATE: {
-      return { ...state, formData: initialFormState };
+      return { ...state, formData: initialFormData };
     }
     default: {
       return state;

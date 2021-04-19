@@ -7,9 +7,9 @@ export const RESET_FORM_STATE = `${PREFIX}RESET_FORM_STATE`;
 export const SUBMIT_FORM = `${PREFIX}SUBMIT_FORM`;
 
 const setField = (name, copyControl) => ({ type: SET_FIELD, payload: { name, copyControl } });
-const setValid = isValid => ({ type: SET_IS_FORM_VALID, payload: isValid });
+const setIsFormValid = isValid => ({ type: SET_IS_FORM_VALID, payload: isValid });
 const submitFormAction = { type: SUBMIT_FORM };
-const resetState = { type: RESET_FORM_STATE };
+const resetFormState = { type: RESET_FORM_STATE };
 
 export const setForm = event => (dispatch, getState) => {
   const { name, value } = event.target;
@@ -28,7 +28,7 @@ export const setForm = event => (dispatch, getState) => {
   dispatch(setField(name, copyControl));
 
   const isValid = Object.values(formData).every(field => field.valid);
-  dispatch(setValid(isValid));
+  dispatch(setIsFormValid(isValid));
 };
 
 export const submitForm = event => (dispatch, getState) => {
@@ -46,5 +46,5 @@ export const submitForm = event => (dispatch, getState) => {
   localStorage.setItem('feedback', JSON.stringify(addedFeedback));
 
   dispatch(submitFormAction);
-  dispatch(resetState);
+  dispatch(resetFormState);
 };
