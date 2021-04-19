@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import locationsReducer from './locations';
 import currentWeatherReducer from './currentWeather';
-import feedbackReducer from './feedback';
+import feedbackReducer from  './feedback';
 
 const rootReducer = combineReducers({
   locations: locationsReducer,
