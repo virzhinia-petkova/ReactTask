@@ -6,17 +6,19 @@ import SearchableDropdown from './SearchableDropdown';
 import CurrentWeather from './CurrentWeather/CurrentWeatherContainer';
 
 import useLocalStorage from './CustomHooks/useLocalStorage';
-import { ENTER_KEYCODE, MAX_ITEMS_LENGTH } from '../common/constants';
+import useUserCoordinates from './CustomHooks/useUserCoordinates';
+import { ENTER_KEYCODE, MAX_ITEMS_LENGTH, USER_LOOCATION } from '../common/constants';
 import { groupQueryString, transformSpaces } from '../common/helpers';
 import { refreshAccessToken } from '../common/auth';
 
 const Home = () => {
   const history = useHistory();
   const { search } = useLocation();
+  const { coords, error } = useUserCoordinates();
 
   const groupedQueryStrings = groupQueryString(search);
-  const cityName = transformSpaces(groupedQueryStrings);
-  const cityId = groupedQueryStrings.id;
+  const cityName = transformSpaces(groupedQueryStrings) || USER_LOOCATION;
+  const userLocation = groupedQueryStrings.id || coords;
 
   const initSearchWordValue = cityName || '';
   const [searchWord, setSearchWord] = useState(initSearchWordValue);
@@ -95,7 +97,11 @@ const Home = () => {
           onClick={handleListItemClick}
         />
       </section>
-      {search ? <CurrentWeather cityId={cityId} cityName={cityName} /> : null}
+      {search || !error ? (
+        <CurrentWeather userLocation={userLocation} cityName={cityName} />
+      ) : (
+        <p>{error}</p>
+      )}
     </main>
   ) : (
     <p>Getting things ready for you</p>
