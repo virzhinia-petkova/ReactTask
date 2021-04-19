@@ -18,7 +18,6 @@ export const ERRORS = {
   }
 };
 
-export const REQUEST_TYPES = {
-  location: 'location',
-  current: 'current'
-};
+export const GEOLOCATION_ERROR =
+  'Geolocation is not supported by your browser. Please search your city by name.';
+export const USER_LOOCATION = 'your location';
