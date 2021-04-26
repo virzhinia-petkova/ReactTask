@@ -19,7 +19,7 @@ const currentWeatherReducer = (state = initialState, action) => {
       return state.set('isLoading', true);
     }
     case SET_CURRENT_WEATHER_REQUEST_SUCCEEDED: {
-      const isWeatherEqual = equals(state.get('current'), action.payload)
+      const isWeatherEqual = equals(state.get('current'), action.payload);
       return isWeatherEqual ? state : state.set('current', action.payload);
     }
     case SET_CURRENT_WEATHER_REQUEST_FAILED: {

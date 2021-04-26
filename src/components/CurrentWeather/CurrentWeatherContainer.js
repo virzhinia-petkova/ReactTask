@@ -1,10 +1,7 @@
 import { connect } from 'react-redux';
 import CurrentWeather from './CurrentWeather';
 import { getCurrentWeatherData } from '../../redux/actions/currentWeather';
-import {
-  getCurrentWeather,
-  getIsLoading
-} from '../../redux/selectors/currentWeatherSelectors';
+import { getCurrentWeather, getIsLoading } from '../../redux/selectors/currentWeatherSelectors';
 
 const mapStateToProps = state => ({
   current: getCurrentWeather(state),
