@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ERRORS, GEOLOCATION_ERROR } from '../../common/constants';
+import { ERRORS, GEOLOCATION_ERROR } from '../common/constants';
 
 const useUserCoordinates = () => {
   const [coords, setCoords] = useState('');
@@ -24,7 +24,7 @@ const useUserCoordinates = () => {
 
     return () => (isMounted = false);
   }, []);
-
+  
   return { coords, error };
 };
 
