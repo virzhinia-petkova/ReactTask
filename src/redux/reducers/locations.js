@@ -1,3 +1,5 @@
+import { equals } from 'ramda';
+import { Map } from 'immutable';
 import {
   SET_LOCATIONS_REQUEST_STARTED,
   SET_LOCATIONS_REQUEST_SUCCEEDED,
@@ -5,37 +7,26 @@ import {
   SET_LOCATIONS_REQUEST_FINISHED
 } from '../actions/locations';
 
-const initialState = {
+const initialState = Map({
   isLoading: false,
   locations: [],
   errors: []
-};
+});
 
 const locationsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_LOCATIONS_REQUEST_STARTED: {
-      return {
-        ...state,
-        isLoading: true
-      };
+      return state.set('isLoading', true);
     }
     case SET_LOCATIONS_REQUEST_SUCCEEDED: {
-      return {
-        ...state,
-        locations: action.payload
-      };
+      const AreLocationsEqual = equals(state.get('locations'), action.payload);
+      return AreLocationsEqual ? state : state.set('locations', action.payload);
     }
     case SET_LOCATIONS_REQUEST_FAILED: {
-      return {
-        ...state,
-        errors: [...state.errors, action.payload]
-      };
+      return state.update('errors', errors => errors.push(action.payload));
     }
     case SET_LOCATIONS_REQUEST_FINISHED: {
-      return {
-        ...state,
-        isLoading: false
-      };
+      return state.set('isLoading', false);
     }
     default: {
       return state;

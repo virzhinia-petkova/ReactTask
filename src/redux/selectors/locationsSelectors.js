@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
 
-const locationsSelector = state => state.locations.locations;
-export const isLocationsLoadingSelector = state => state.locations.isLoading;
+const getLocations = state => state.locations.get('locations');
+export const getIsLoading = state => state.locations.get('isLoading');
 
-export const transformLocations = createSelector(locationsSelector, locations =>
+export const selectLocations = createSelector(getLocations, locations =>
   locations.map(location => ({
     ...location,
     fullName: `${location.name}, ${location.country}`
