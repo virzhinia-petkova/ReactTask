@@ -53,7 +53,7 @@ const Home = ({ className }) => {
         />
       </Styled.Container>
       {console.log(cityName, cityId)}
-      {(cityName && cityId) ? <CurrentWeather userLocation={cityId} cityName={cityName} /> : null}
+      {cityName && cityId ? <CurrentWeather userLocation={cityId} cityName={cityName} /> : null}
     </main>
   ) : (
     <p>Getting things ready for you</p>

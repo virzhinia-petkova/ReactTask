@@ -24,7 +24,7 @@ const useUserCoordinates = () => {
 
     return () => (isMounted = false);
   }, []);
-  
+
   return { coords, error };
 };
 

@@ -8,7 +8,7 @@ const useLocationQueryStrings = coords => {
   const groupedQueryStrings = groupQueryString(search);
   const cityName = transformSpaces(groupedQueryStrings) || USER_LOOCATION;
   const cityId = groupedQueryStrings.id || coords;
-  
+
   return { cityId, cityName };
 };
 
