@@ -1,15 +1,18 @@
 import { useHistory } from 'react-router-dom';
+import { Button, Image, Typography } from 'antd';
 import errorPhoto from '../../public/404.jpg';
-import * as Styled from '../styles/globalStyles';
 
 const Error = () => {
   const history = useHistory();
   return (
-    <div>
-      <img src={errorPhoto} alt="error photo" />
-      <h1>Oh, no, did you get lost? Don't worry.</h1>
-      <Styled.Button onClick={() => history.push('/home')}>Here's you way back!</Styled.Button>
-    </div>
+    <>
+      <Typography.Title level={2}>Oh, did you get lost?</Typography.Title>
+      <Image src={errorPhoto} alt="error photo" />
+      <Typography.Title level={3}>Don't worry.</Typography.Title>
+      <Button type="primary" onClick={() => history.push('/home')}>
+        Here's you way back!
+      </Button>
+    </>
   );
 };
 

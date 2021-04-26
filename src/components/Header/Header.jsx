@@ -1,26 +1,44 @@
 import PropTypes from 'prop-types';
-import * as Styled from '../../styles/globalStyles';
+import { Link } from 'react-router-dom';
+import { Layout, Menu, Switch } from 'antd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { THEMES } from '../../common/constants';
 
-const Header = ({ onClick, mode, className }) => {
+const Header = ({ onClick, mode }) => {
   return (
-    <header className={className}>
+    <Layout.Header
+      mode="horizontal"
+      style={{
+        textAlign: 'center',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        backgroundColor: 'white'
+      }}
+    >
       <p>Weather Forecast</p>
-      <Styled.Navigation>
-        <Styled.Link to="/home">Home</Styled.Link>
-        <Styled.Link to="/about">About</Styled.Link>
-      </Styled.Navigation>
-      <Styled.Button onClick={onClick}>
-        Go {mode === THEMES.dark ? THEMES.light : THEMES.dark}
-      </Styled.Button>
-    </header>
+      <Menu mode="horizontal">
+        <Menu.Item>
+          <Link to="/home">Home</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to="/about">About</Link>
+        </Menu.Item>
+      </Menu>
+      <Switch
+        checkedChildren={<FontAwesomeIcon icon={faSun} />}
+        unCheckedChildren={<FontAwesomeIcon icon={faMoon} />}
+        onChange={onClick}
+        defaultChecked={mode === THEMES.light ? false : true}
+      />
+    </Layout.Header>
   );
 };
 
 Header.propTypes = {
   onClick: PropTypes.func.isRequired,
-  mode: PropTypes.string.isRequired,
-  className: PropTypes.string
+  mode: PropTypes.string.isRequired
 };
 
 export default Header;

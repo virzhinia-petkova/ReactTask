@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import CardList from '../CardList';
 import aboutImage from '../../../public/about.jpg';
-import * as Styled from '../../styles/globalStyles';
+import { Row, Col, Image, Typography } from 'antd';
 
 const services = [
   {
@@ -15,22 +15,24 @@ const services = [
     id: 2
   },
   {
-    name: 'Daily forecast',
+    name: 'Daily Forecast',
     description: 'Be prepared for whatever nature surprises you with',
     id: 3
   }
 ];
 
-const About = ({ className }) => {
+const About = () => {
   return (
-    <div className={className}>
-      <Styled.Container column>
-        <h1>About us</h1>
-        <p>The weather app you've always dreamed of...</p>
+    <Row align="middle" justify="space-around">
+      <Col>
+        <Typography.Title level={2}>About us</Typography.Title>
+        <Typography.Text>The weather app you've always dreamed of...</Typography.Text>
         <CardList items={services} />
-      </Styled.Container>
-      <img src={aboutImage} alt="about-image" />
-    </div>
+      </Col>
+      <Col>
+        <Image src={aboutImage} width={'35vw'} alt="about-image" />
+      </Col>
+    </Row>
   );
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Layout } from 'antd';
 
 const Footer = () => {
   const currentDate = new Date();
@@ -8,7 +9,7 @@ const Footer = () => {
     weekday: 'short'
   }).format(currentDate);
 
-  return <footer className="app__footer">{dateString}</footer>;
+  return <Layout.Footer style={{ textAlign: 'center' }}>{dateString}</Layout.Footer>;
 };
 
 export default Footer;

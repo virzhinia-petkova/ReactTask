@@ -1,17 +1,17 @@
 import PropTypes from 'prop-types';
-import Card from './Card';
-import * as Styled from '../styles/globalStyles';
+import { Card, Col, Row } from 'antd';
 
 const CardList = ({ items }) => {
   return (
-    <Styled.Container>
+    <Row gutter={[8, 8]}>
       {items.map(item => (
-        <Card key={item.id}>
-          <h4>{item.name}</h4>
-          <p>{item.description}</p>
-        </Card>
+        <Col key={item.id}>
+          <Card title={item.name} bordered={true} style={{ width: 300 }}>
+            {item.description}
+          </Card>
+        </Col>
       ))}
-    </Styled.Container>
+    </Row>
   );
 };
 

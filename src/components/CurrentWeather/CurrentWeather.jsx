@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-
+import { Spin } from 'antd';
 import useFetch from '../../customHooks/useFetch';
 
 const CurrentWeather = ({ cityId, cityName, current, isLoading, getCurrentWeatherData }) => {
@@ -14,7 +14,7 @@ const CurrentWeather = ({ cityId, cityName, current, isLoading, getCurrentWeathe
   return !isLoading ? (
     <p>{`The current weather in ${cityName} is ${weatherDescription}.`}</p>
   ) : (
-    <p>Fetching the data for you...</p>
+    <Spin />
   );
 };
 

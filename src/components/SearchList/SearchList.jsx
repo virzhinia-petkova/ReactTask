@@ -1,5 +1,6 @@
 import { useHistory, useParams } from 'react-router';
 import PropTypes from 'prop-types';
+import { List, Typography, Divider, Spin } from 'antd';
 
 import Link from '../Link';
 import useFetch from '../../customHooks/useFetch';
@@ -15,25 +16,35 @@ const SearchList = ({ locations, isLoading, getLocationData }) => {
   };
 
   return (
-    <div className="app__main">
-      <h2>Here are the matches for your location:</h2>
+    <>
+      <Divider orientation="center">Here are the matches for your location:</Divider>
       {!isLoading ? (
         locations?.length > 0 ? (
-          locations.map(result => (
-            <Link
-              place={result.fullName}
-              key={result.id}
-              id={result.id}
-              onClick={handleSelectCity}
-            />
-          ))
+          <List
+            size="small"
+            dataSource={locations}
+            renderItem={result => (
+              <List.Item orientation="center">
+                {
+                  <Link
+                    place={result.fullName}
+                    key={result.id}
+                    id={result.id}
+                    onClick={handleSelectCity}
+                  />
+                }
+              </List.Item>
+            )}
+          />
         ) : (
-          <p>Ooops, looks like we couldn't find anything</p>
+          <Typography.Text>Ooops, looks like we couldn't find anything</Typography.Text>
         )
       ) : (
-        <p>Fetching the data for you...</p>
+        <>
+          <Spin />
+        </>
       )}
-    </div>
+    </>
   );
 };
 
