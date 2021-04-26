@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 
 import Root from './Root';
 import store from './redux/store';
+import 'antd/dist/antd.css';
 
 ReactDOM.render(
   <Provider store={store}>
