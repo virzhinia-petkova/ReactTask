@@ -1,2 +1,3 @@
-export const currentWeatherSelector = state => state.current.current;
-export const isCurrentWeatherLoadingSelector = state => state.current.isLoading;
+export const getCurrentWeather = state => state.current.get('current');
+export const getIsLoading = state => state.current.get('isLoading');
+  

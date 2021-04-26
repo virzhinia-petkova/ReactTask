@@ -2,13 +2,13 @@ import { connect } from 'react-redux';
 import CurrentWeather from './CurrentWeather';
 import { getCurrentWeatherData } from '../../redux/actions/currentWeather';
 import {
-  currentWeatherSelector,
-  isCurrentWeatherLoadingSelector
+  getCurrentWeather,
+  getIsLoading
 } from '../../redux/selectors/currentWeatherSelectors';
 
 const mapStateToProps = state => ({
-  current: currentWeatherSelector(state),
-  isLoading: isCurrentWeatherLoadingSelector(state)
+  current: getCurrentWeather(state),
+  isLoading: getIsLoading(state)
 });
 
 const mapDispatchToProps = dispatch => ({
