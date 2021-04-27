@@ -18,6 +18,10 @@ export const ERRORS = {
   }
 };
 
+export const GEOLOCATION_ERROR =
+  'Geolocation is not supported by your browser. Please search your city by name.';
+export const USER_LOOCATION = 'your location';
+
 export const COLORS = {
   white_regular: '#ffffff',
   white_dark: '#f3f3f3',

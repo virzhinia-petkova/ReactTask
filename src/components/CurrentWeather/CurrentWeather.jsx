@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 
 import useFetch from '../../customHooks/useFetch';
 
-const CurrentWeather = ({ cityId, cityName, current, isLoading, getCurrentWeatherData }) => {
-  useFetch(getCurrentWeatherData, cityId);
+const CurrentWeather = ({ userLocation, cityName, current, isLoading, getCurrentWeatherData }) => {
+  useFetch(getCurrentWeatherData, userLocation);
 
   const weatherDescription =
     current?.temperature && current?.symbolPhrase

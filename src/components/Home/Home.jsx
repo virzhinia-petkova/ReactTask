@@ -6,6 +6,7 @@ import SearchableDropdown from '../SearchableDropdown';
 import CurrentWeather from '../CurrentWeather/CurrentWeatherContainer';
 
 import useLocationQueryStrings from '../../customHooks/useLocationQueryStrings';
+import useUserCoordinates from '../../customHooks/useUserCoordinates';
 import useAuth from '../../customHooks/useAuth';
 import useCitySearch from '../../customHooks/useCitySearch';
 import * as Styled from '../../styles/globalStyles';
@@ -19,7 +20,8 @@ const popularPlaces = [
 
 const Home = ({ className }) => {
   const isAuthenticating = useAuth();
-  const { cityId, cityName } = useLocationQueryStrings();
+  const { coords } = useUserCoordinates();
+  const { cityId, cityName } = useLocationQueryStrings(coords);
   const {
     onQueryChange,
     query,
@@ -50,7 +52,8 @@ const Home = ({ className }) => {
           onClick={startExistingSearch}
         />
       </Styled.Container>
-      {cityName ? <CurrentWeather cityId={cityId} cityName={cityName} /> : null}
+      {console.log(cityName, cityId)}
+      {cityName && cityId ? <CurrentWeather userLocation={cityId} cityName={cityName} /> : null}
     </main>
   ) : (
     <p>Getting things ready for you</p>
