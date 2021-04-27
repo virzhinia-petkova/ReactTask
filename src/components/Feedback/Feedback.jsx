@@ -3,7 +3,7 @@ import * as Styled from '../../styles/globalStyles';
 const Feedback = ({ isFormValid, isFormSubmitted, form, setForm, submitForm }) => {
   return !isFormSubmitted ? (
     <>
-      <h3>We'd like to ask you a few questions...</h3>
+      <h3>We'd like to ask you a few questions!</h3>
       <form onSubmit={submitForm}>
         {Object.values(form).map(field => (
           <Styled.Container column key={field.name}>

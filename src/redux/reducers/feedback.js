@@ -12,7 +12,7 @@ const initialFormData = {
     },
     touched: false,
     valid: false,
-    error: ''
+    error: null
   },
   two: {
     question: 'How often do you visit Weather Forecast?',
@@ -25,7 +25,7 @@ const initialFormData = {
     },
     touched: false,
     valid: false,
-    error: ''
+    error: null
   },
   three: {
     question: 'Is there something you`d like us to change in Weather Forecast?',
@@ -38,7 +38,7 @@ const initialFormData = {
     },
     touched: false,
     valid: false,
-    error: ''
+    error: null
   },
   four: {
     question: 'Tell us anything else you want!',
@@ -51,7 +51,7 @@ const initialFormData = {
     },
     touched: false,
     valid: false,
-    error: ''
+    error: null
   }
 };
 
