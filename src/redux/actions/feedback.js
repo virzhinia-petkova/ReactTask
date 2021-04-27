@@ -6,7 +6,7 @@ export const SET_IS_FORM_SUBMITTED = `${PREFIX}SET_IS_FORM_SUBMITTED`;
 export const RESET_FORM_STATE = `${PREFIX}RESET_FORM_STATE`;
 export const SUBMIT_FORM = `${PREFIX}SUBMIT_FORM`;
 
-const setField = (name, copyControl) => ({ type: SET_FIELD, payload: { name, copyControl } });
+const setField = (name, copyField) => ({ type: SET_FIELD, payload: { name, copyField } });
 const setIsFormValid = isValid => ({ type: SET_IS_FORM_VALID, payload: isValid });
 const submitFormAction = { type: SUBMIT_FORM };
 const resetFormState = { type: RESET_FORM_STATE };
@@ -17,19 +17,20 @@ export const setForm = event => (dispatch, getState) => {
     feedback: { formData }
   } = getState();
 
-  const copyControl = formData[name];
-  copyControl.answer = value;
-  copyControl.touched = true;
+  // get the current field
+  const copyField = { ...formData[name] };
+  copyField.answer = value;
+  copyField.touched = true;
 
-  if (copyControl.answer.length >= copyControl.validators.minLength) {
-    copyControl.valid = true;
-    copyControl.error = null;
+  if (copyField.answer.length >= copyField.validators.minLength) {
+    copyField.valid = true;
+    copyField.error = null;
   } else {
-    copyControl.valid = false;
-    copyControl.error = `You'll need to add at least ${copyControl.validators.minLength} symbols here`;
+    copyField.valid = false;
+    copyField.error = `You'll need to add at least ${copyField.validators.minLength} symbols here`;
   }
 
-  dispatch(setField(name, copyControl));
+  dispatch(setField(name, copyField));
 
   const isValid = Object.values(formData).every(field => field.valid);
   dispatch(setIsFormValid(isValid));

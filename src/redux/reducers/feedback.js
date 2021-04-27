@@ -64,7 +64,7 @@ const initialState = {
 const feedback = (state = initialState, action) => {
   switch (action.type) {
     case SET_FIELD: {
-      const newFormState = { ...state.formData, [action.payload.name]: action.payload.copyControl };
+      const newFormState = { ...state.formData, [action.payload.name]: action.payload.copyField };
       return { ...state, formData: newFormState };
     }
     case SET_IS_FORM_VALID: {
