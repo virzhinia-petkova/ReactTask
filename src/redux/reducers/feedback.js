@@ -50,8 +50,8 @@ const initialFormData = {
       required: true
     },
     touched: false,
-    valid: false, 
-    error: '',
+    valid: false,
+    error: ''
   }
 };
 

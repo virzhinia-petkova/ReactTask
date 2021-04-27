@@ -184,10 +184,9 @@ export const Container = styled.div`
     `}
 `;
 
-
 export const Error = styled.p`
   ${({ theme }) => `
     font-size: ${theme.fontSize.small};
     color: ${theme.colors.errorColor};
   `}
-`
+`;
