@@ -10,7 +10,7 @@ const Feedback = ({ isFormValid, isFormSubmitted, form, setForm, submitForm }) =
             <label htmlFor={field.name}>{field.question}</label>
             <Styled.Input
               bordred
-              error={field.touched && !field.valid}
+              error={!!field.error}
               type="text"
               placeholder={field.placeholder}
               name={field.name}
