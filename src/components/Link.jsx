@@ -6,8 +6,6 @@ const Link = ({ place, onClick, id }) => (
   <Styled.Item
     onClick={e => onClick({ e, place, id })}
     onKeyDown={onClick}
-    data-target={id}
-    data-name={place}
     tabIndex={0}
     role="button"
   >
