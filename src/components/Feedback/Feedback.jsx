@@ -18,6 +18,7 @@ const Feedback = ({ isFormValid, isFormSubmitted, form, setForm, submitForm }) =
               onChange={setForm}
               required={field.validators.required}
             />
+            <Styled.Error>{field.error}</Styled.Error>
           </Styled.Container>
         ))}
         <Styled.Button type="submit" disabled={!isFormValid}>

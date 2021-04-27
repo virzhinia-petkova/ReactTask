@@ -183,3 +183,11 @@ export const Container = styled.div`
       flex-direction: column;
     `}
 `;
+
+
+export const Error = styled.p`
+  ${({ theme }) => `
+    font-size: ${theme.fontSize.small};
+    color: ${theme.colors.errorColor};
+  `}
+`

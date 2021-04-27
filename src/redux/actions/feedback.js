@@ -21,9 +21,13 @@ export const setForm = event => (dispatch, getState) => {
   copyControl.answer = value;
   copyControl.touched = true;
 
-  copyControl.answer.length >= copyControl.validators.minLength
-    ? (copyControl.valid = true)
-    : (copyControl.valid = false);
+  if (copyControl.answer.length >= copyControl.validators.minLength) {
+    copyControl.valid = true;
+    copyControl.error = ``;
+  } else {
+    copyControl.valid = false;
+    copyControl.error = `You'll need to add at least ${copyControl.validators.minLength} symbols here`;
+  }
 
   dispatch(setField(name, copyControl));
 
