@@ -1,34 +1,30 @@
+import * as Styled from '../../styles/globalStyles';
+
 const Feedback = ({ isFormValid, isFormSubmitted, form, setForm, submitForm }) => {
   return !isFormSubmitted ? (
     <>
-      <h2 className="feedback">We'd like to ask you a few questions...</h2>
-      <form onSubmit={submitForm} className="feedback__form">
+      <h3>We'd like to ask you a few questions...</h3>
+      <form onSubmit={submitForm}>
         {Object.values(form).map(field => (
-          <div key={field.name} className="feedback__form__control">
-            <label htmlFor={field.name} className="feedback__form__control__label">
+          <Styled.Container column key={field.name}>
+            <label htmlFor={field.name}>
               {field.question}
             </label>
-            <input
-              style={
-                field.touched
-                  ? field.valid
-                    ? { border: '2px solid green' }
-                    : { border: '2px solid red' }
-                  : null
-              }
+            <Styled.Input
+              bordred
+              error={field.touched && !field.valid}
               type="text"
               placeholder={field.placeholder}
               name={field.name}
               value={field.answer}
               onChange={setForm}
               required={field.validators.required}
-              className="input"
             />
-          </div>
+          </Styled.Container>
         ))}
-        <button type="submit" disabled={!isFormValid} className="button">
+        <Styled.Button type="submit" disabled={!isFormValid}>
           Submit
-        </button>
+        </Styled.Button>
       </form>
     </>
   ) : (
