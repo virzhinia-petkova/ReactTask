@@ -38,9 +38,12 @@ export const Button = styled.button`
       background-color: ${theme.colors.primaryColorDarker};
       cursor: pointer;
 
-      ${disabled && `
+      ${
+        disabled &&
+        `
         cursor: not-allowed;
-      `}
+      `
+      }
     }
 
     &:focus {
@@ -50,16 +53,18 @@ export const Button = styled.button`
 `;
 
 export const Input = styled.input`
-  ${({ theme, search, error }) =>`
+  ${({ theme, search, error }) => `
     padding: ${theme.padding.default};
     padding-left: ${theme.padding.big};
     border: none;
     border-bottom: 0.1em solid ${theme.colors.complimentaryColor};
 
-    ${error &&
+    ${
+      error &&
       `
       border-bottom: 0.1em solid ${theme.colors.errorColor};
-    `}
+    `
+    }
 
     width: inherit;
 
@@ -71,14 +76,16 @@ export const Input = styled.input`
       outline: none;
   }
 
-    ${search &&
+    ${
+      search &&
       `
         background-color: ${theme.colors.primaryColor};
         background-image: ${theme.backgroundImage.image};
         background-repeat: no-repeat;
         background-size: ${theme.backgroundImage.size};
         background-position: ${theme.backgroundImage.position};
-    `}
+    `
+    }
   `}
 `;
 

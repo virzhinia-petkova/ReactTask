@@ -7,9 +7,7 @@ const Feedback = ({ isFormValid, isFormSubmitted, form, setForm, submitForm }) =
       <form onSubmit={submitForm}>
         {Object.values(form).map(field => (
           <Styled.Container column key={field.name}>
-            <label htmlFor={field.name}>
-              {field.question}
-            </label>
+            <label htmlFor={field.name}>{field.question}</label>
             <Styled.Input
               bordred
               error={field.touched && !field.valid}
