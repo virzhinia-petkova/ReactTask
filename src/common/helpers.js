@@ -24,3 +24,6 @@ export const transformSpaces = string => string.city?.replace(/%20/g, ' ');
 
 export const sortLocations = locations =>
   [...locations].sort((a, b) => a.country.localeCompare(b.country) || a.name.localeCompare(b.name));
+
+export const getFormFieldLengthErrorMessage = symbolsLength =>
+  `This field needs to be at least ${symbolsLength} symbols.`;
