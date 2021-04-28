@@ -190,3 +190,12 @@ export const Error = styled.p`
     color: ${theme.colors.errorColor};
   `}
 `;
+
+export const Footer = styled.footer`
+    ${({ theme }) => `
+      position: sticky;
+      bottom: 0;
+      padding: ${theme.padding.default};
+      width: 90%;
+    `}
+`

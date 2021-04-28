@@ -4,7 +4,7 @@ const Feedback = ({ isFormValid, isFormSubmitted, formState, updateFormState, su
   return !isFormSubmitted ? (
     <>
       <h3>We'd like to ask you a few questions!</h3>
-      <form onSubmit={submitForm}>
+      <form autoComplete="off" onSubmit={submitForm}>
         {Object.values(formState).map(field => (
           <Styled.Container column key={field.name}>
             <label htmlFor={field.name}>{field.question}</label>

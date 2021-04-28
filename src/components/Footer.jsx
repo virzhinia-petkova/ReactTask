@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Styled from '../styles/GlobalStyles'
 
 const Footer = () => {
   const currentDate = new Date();
@@ -8,7 +9,7 @@ const Footer = () => {
     weekday: 'short'
   }).format(currentDate);
 
-  return <footer className="app__footer">{dateString}</footer>;
+  return <Styled.Footer>{dateString}</Styled.Footer>;
 };
 
 export default Footer;

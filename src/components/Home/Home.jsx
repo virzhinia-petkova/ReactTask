@@ -11,10 +11,11 @@ import useCitySearch from '../../customHooks/useCitySearch';
 import * as Styled from '../../styles/globalStyles';
 
 const popularPlaces = [
-  { name: 'New York', id: 1 },
-  { name: 'Monaco', id: 2 },
-  { name: 'London', id: 3 },
-  { name: 'Tokyo', id: 4 }
+  { name: 'New York', id: 105128581 },
+  { name: 'Monaco', id: 102993458 },
+  { name: 'London', id: 102643743 },
+  { name: 'Tokyo', id: 101850147 },
+  { name: 'Paris', id: 10 },
 ];
 
 const Home = ({ className }) => {
@@ -32,7 +33,6 @@ const Home = ({ className }) => {
   return !isAuthenticating ? (
     <main className={className}>
       <Styled.Container row>
-        {error ? <p>{error}</p> : null}
         <SearchField
           placeholder="Search a new place..."
           value={query}
@@ -50,6 +50,7 @@ const Home = ({ className }) => {
           onClick={startExistingSearch}
         />
       </Styled.Container>
+      <Styled.Error>{error}</Styled.Error>
       {cityName ? <CurrentWeather cityId={cityId} cityName={cityName} /> : null}
     </main>
   ) : (

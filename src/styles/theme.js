@@ -43,11 +43,11 @@ export const getTheme = mode => ({
     default: '1em'
   },
   height: {
-    default: '59em',
+    default: '100%',
     s: '3em'
   },
   width: {
-    default: '120em',
+    default: '100%',
     s: '10em'
   },
   borderRadius: {
