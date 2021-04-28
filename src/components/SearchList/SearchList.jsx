@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Link from '../Link';
 import useFetch from '../../customHooks/useFetch';
-import * as Styled from '../../styles/GlobalStyles'
+import * as Styled from '../../styles/GlobalStyles';
 
 const SearchList = ({ locations, isLoading, getLocationData }) => {
   const { location } = useParams();
@@ -18,22 +18,22 @@ const SearchList = ({ locations, isLoading, getLocationData }) => {
   return (
     <Styled.Container column>
       <h2>Here are the matches for your location:</h2>
-        {!isLoading ? (
-          locations?.length > 0 ? (
-            locations.map(result => (
-              <Link
-                place={result.fullName}
-                key={result.id}
-                id={result.id}
-                onClick={handleSelectCity}
-              />
-            ))
-          ) : (
-            <p>Ooops, looks like we couldn't find anything</p>
-          )
+      {!isLoading ? (
+        locations?.length > 0 ? (
+          locations.map(result => (
+            <Link
+              place={result.fullName}
+              key={result.id}
+              id={result.id}
+              onClick={handleSelectCity}
+            />
+          ))
         ) : (
-          <p>Fetching the data for you...</p>
-        )}
+          <p>Ooops, looks like we couldn't find anything</p>
+        )
+      ) : (
+        <p>Fetching the data for you...</p>
+      )}
     </Styled.Container>
   );
 };

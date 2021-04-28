@@ -192,10 +192,10 @@ export const Error = styled.p`
 `;
 
 export const Footer = styled.footer`
-    ${({ theme }) => `
+  ${({ theme }) => `
       position: sticky;
       bottom: 0;
       padding: ${theme.padding.default};
       width: 90%;
     `}
-`
+`;

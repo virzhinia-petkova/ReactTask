@@ -15,7 +15,7 @@ const popularPlaces = [
   { name: 'Monaco', id: 102993458 },
   { name: 'London', id: 102643743 },
   { name: 'Tokyo', id: 101850147 },
-  { name: 'Paris', id: 10 },
+  { name: 'Paris', id: 10 }
 ];
 
 const Home = ({ className }) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Styled from '../styles/GlobalStyles'
+import * as Styled from '../styles/GlobalStyles';
 
 const Footer = () => {
   const currentDate = new Date();
